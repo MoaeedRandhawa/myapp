@@ -36,38 +36,38 @@ export default function TextForm(props) {
   return (
     <>
       <div className="container" style={{color: props.mode==='dark'?'white':'#071930'}}>
-        <h1>{props.heading}</h1>
+        <h1 className="mb-4">{props.heading}</h1>
         <div className="form-group">
           <textarea
             className="form-control"
             value={text}
             onChange={handleOnChange}
-            style={{backgroundColor: props.mode==='dark'?'grey':'white', color: props.mode==='dark'?'white':'#071930'}}
+            style={{backgroundColor: props.mode==='dark'?'#13466e':'white', color: props.mode==='dark'?'white':'#071930'}}
             id="myBox"
             rows="15"
           ></textarea>
         </div>
-        <button className="btn btn-primary my-1" onClick={handleUpClick}>
+        <button disabled={text.length===0} className="btn btn-primary mx-1 my-1" onClick={handleUpClick}>
           Convert to UpperCase
         </button>
-        <button className="btn btn-primary mx-1" onClick={handleDownClick}>
+        <button disabled={text.length===0} className="btn btn-primary mx-1 my-1" onClick={handleDownClick}>
           Convert to LowerCase
         </button>
-        <button className="btn btn-primary" onClick={handleClearClick}>
+        <button disabled={text.length===0} className="btn btn-primary mx-1 my-1" onClick={handleClearClick}>
           Clear Text
         </button>
-        <button className="btn btn-primary mx-1" onClick={handleReverseClick}>
+        <button disabled={text.length===0} className="btn btn-primary mx-1 my-1" onClick={handleReverseClick}>
           Reverse Text
         </button>
       </div>
       <div className="container my-2" style={{color: props.mode==='dark'?'white':'#071930'}}>
         <h2>your Text Summary</h2>
         <p>
-          {text.trim().split(/\s+/).length} Words, {text.replace(/\s/g, "").length} Characters
+          {text.split(" ").filter((Element)=>{return Element.length!==0}).length} Words, {text.length} Characters
         </p>
-        <p>Will Take {0.008 * text.trim().split(/\s+/).length} Minutes To Read</p>
+        <p>Will Take {0.008 * text.split(" ").filter((Element)=>{return Element.length!==0}).length} Minutes To Read</p>
         <h2>Preview</h2>
-        <p>{text.length>0?text:"Enter Some Thing Above To Preview Here"}</p>
+        <p>{text.length>0?text:"Nothing To Preview!"}</p>
       </div>
     </>
   );

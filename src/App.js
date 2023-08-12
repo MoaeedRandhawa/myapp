@@ -1,10 +1,10 @@
 import "./App.css";
 import Alert from "./component/Alert";
-/*import About from "./component/About";*/
+import About from "./component/About";
 import Navbar from "./component/Navbar";
 import TextForm from "./component/TextForm";
 import React, { useState } from "react";
-/*import { BrowserRouter as Router, Routes, Route } from "react-router-dom";*/
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 function App() {
   const [mode, setMode] = useState("light");
@@ -24,7 +24,7 @@ function App() {
       setMode("dark");
       document.body.style.backgroundColor = "#071930";
       showAlert(" Dark Mode Has Been Enabled", "success");
-      document.title = "TextUtils - Dark Mode";
+      //document.title = "TextUtils - Dark Mode";
       //setInterval(()=>{
       //  document.title = "TextUtils is Amazing"
       //}, 2000);
@@ -35,12 +35,12 @@ function App() {
       setMode("light");
       document.body.style.backgroundColor = "white";
       showAlert(" Light Mode Has Been Enabled", "success");
-      document.title = "TextUtils - Light Mode";
+      //document.title = "TextUtils - Light Mode";
     }
   };
   return (
     <>
-      {/*<Router>*/}
+      <Router>
         <Navbar
           title="TextUtils"
           aboutText="About TextUtils"
@@ -51,21 +51,22 @@ function App() {
         <Alert alert={alert} />
 
         <div className="container my-3">
-          {/*<Routes>
-            <Route exact path="/about" element={<About />} />
+          <Routes>
+            <Route exact path="/about" element={<About mode={mode} />} />
             <Route
-              exact path="/"
-              element={*/}
+              exact
+              path="/"
+              element={
                 <TextForm
                   showAlert={showAlert}
-                  heading="Enter Text To Analyze"
+                  heading="Try TextUtils - Word Counter, Character Counter, Reverse Text"
                   mode={mode}
                 />
-              {/*}*/}
-              {/*/>
-          </Routes>*/}
+              }
+            />
+          </Routes>
         </div>
-        {/*</Router>*/}
+      </Router>
     </>
   );
 }
