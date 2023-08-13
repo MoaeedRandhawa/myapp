@@ -43,7 +43,7 @@ function App() {
       {/*<Router>*/}
         <Navbar
           title="TextUtils"
-          aboutText="About TextUtils"
+          aboutText="About"
           mode={mode}
           toggleMode={toggleMode}
         />

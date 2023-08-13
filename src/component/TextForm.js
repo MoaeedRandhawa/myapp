@@ -26,6 +26,11 @@ export default function TextForm(props) {
     setText(newtext);
     props.showAlert("Text Has Been Reversed","success");
   };
+  const handleCopy = () => {
+    //console.log("i am Copy");
+    navigator.clipboard.writeText(text);
+    props.showAlert("Copied to Clipboard!","success");
+  };
   const handleOnChange = (event) => {
     //console.log("On Change");
     setText(event.target.value);
@@ -53,19 +58,22 @@ export default function TextForm(props) {
         <button disabled={text.length===0} className="btn btn-primary mx-1 my-1" onClick={handleDownClick}>
           Convert to LowerCase
         </button>
-        <button disabled={text.length===0} className="btn btn-primary mx-1 my-1" onClick={handleClearClick}>
-          Clear Text
-        </button>
         <button disabled={text.length===0} className="btn btn-primary mx-1 my-1" onClick={handleReverseClick}>
           Reverse Text
+        </button>
+        <button disabled={text.length===0} className="btn btn-primary mx-1 my-1" onClick={handleCopy}>
+          Copy Text
+        </button>
+        <button disabled={text.length===0} className="btn btn-primary mx-1 my-1" onClick={handleClearClick}>
+          Clear Text
         </button>
       </div>
       <div className="container my-2" style={{color: props.mode==='dark'?'white':'#071930'}}>
         <h2>your Text Summary</h2>
         <p>
-          {text.split(" ").filter((Element)=>{return Element.length!==0}).length} Words, {text.length} Characters
+          {text.split(/\s+/).filter((Element)=>{return Element.length!==0}).length} Words, {text.length} Characters
         </p>
-        <p>Will Take {0.008 * text.split(" ").filter((Element)=>{return Element.length!==0}).length} Minutes To Read</p>
+        <p>Will Take {0.008 * text.split(/\s+/).filter((Element)=>{return Element.length!==0}).length} Minutes To Read</p>
         <h2>Preview</h2>
         <p>{text.length>0?text:"Nothing To Preview!"}</p>
       </div>
